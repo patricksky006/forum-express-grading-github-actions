@@ -103,6 +103,36 @@ const adminController = {
         res.render('admin/user', { User })
       })
       .catch(err => next(err))
+  },
+  editUser: (req, res, next) => {
+    User.findByPk(req.params.id, {
+      raw: true
+    })
+      .then(user => {
+        if (!user) throw new Error("user didn't exist!")
+        res.render('admin/edit-user', { user })
+      })
+      .catch(err => next(err))
+  },
+  putUser: (req, res, next) => {
+    const { name, email, isAdmin } = req.body
+    console.log(req.body)
+    if (!name) throw new Error('User name is required!')
+    if (!email) throw new Error('User email is required!')
+    User.findByPk(req.params.id)
+      .then(user => {
+        if (!user) throw new Error("User didn't exist!")
+        return user.update({
+          name,
+          email,
+          isAdmin: isAdmin === 'adminOn'
+        })
+      })
+      .then(() => {
+        req.flash('success_messages', 'user was successfully to update')
+        res.redirect('/admin/users')
+      })
+      .catch(err => next(err))
   }
 }
 
