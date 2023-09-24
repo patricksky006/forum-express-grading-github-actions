@@ -129,9 +129,18 @@ const adminController = {
         })
       })
       .then(() => {
-        req.flash('success_messages', 'user was successfully to update')
+        req.flash('success_messages', 'User was successfully to update')
         res.redirect('/admin/users')
       })
+      .catch(err => next(err))
+  },
+  deleteUser: (req, res, next) => {
+    return User.findByPk(req.params.id)
+      .then(user => {
+        if (!user) throw new Error("User didn't exist!")
+        return user.destroy()
+      })
+      .then(() => res.redirect('/admin/users'))
       .catch(err => next(err))
   }
 }

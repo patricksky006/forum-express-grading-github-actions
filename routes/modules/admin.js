@@ -13,6 +13,7 @@ router.post('/restaurants', upload.single('image'), adminController.postRestaura
 router.get('/users/:id/edit', adminController.editUser)
 router.get('/users/:id', adminController.getUser)
 router.put('/users/:id', adminController.putUser)
+router.delete('/users/:id', adminController.deleteUser)
 router.get('/users', adminController.getUsers)
 router.get('', (req, res) => res.redirect('/admin/restaurants'))
 module.exports = router
