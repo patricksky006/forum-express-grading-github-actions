@@ -1,8 +1,8 @@
 const { Restaurant } = require('../models')
+const { User } = require('../models')
 const { localFileHandler } = require('../helpers/file-helpers')
 
 const adminController = {
-
   getRestaurants: (req, res, next) => {
     Restaurant.findAll({
       raw: true
@@ -84,6 +84,13 @@ const adminController = {
         return restaurant.destroy()
       })
       .then(() => res.redirect('/admin/restaurants'))
+      .catch(err => next(err))
+  },
+  getUsers: (req, res, next) => {
+    User.findAll({
+      raw: true
+    })
+      .then(Users => res.render('admin/users', { Users }))
       .catch(err => next(err))
   }
 }
