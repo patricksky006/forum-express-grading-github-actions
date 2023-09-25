@@ -1,37 +1,35 @@
 <h1>使用者後台</h1>
-{{!-- <a href='/admin/restaurants/create'>
-  <button type="button" class="btn btn-primary">New Restaurant</button>
-</a> --}}
 <br />
 <br />
-<table class="table align-middle">
-  <thead class="thead-dark">
+<table class="table">
+  <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
-      <th scope="col"></th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">Option</th>
     </tr>
   </thead>
   <tbody>
-    {{#each Users}}
+    {{#each users}}
     <tr>
       <th scope="row">{{this.id}}</th>
       <td>{{this.name}}</td>
+      <td>{{this.email}}</td>
+      <td>{{#if this.isAdmin}}admin{{else}}user{{/if}}</td>
       <td>
-        <button type="button" class="btn btn-link">
-          <a class="btn btn-link link-primary" href="/admin/users/{{this.id}}">
-            Show
-          </a>
-        </button>
-        <button type="button" class="btn btn-link">
-          <a class="btn btn-link link-primary" href="/admin/users/{{this.id}}/edit">
-            Edit
-          </a>
-        </button>
-        <form action="/admin/users/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
-          <button type="submit" class="btn btn-link link-danger"
-            onclick="return confirm(`確定要刪除 {{ this.name }} 嗎？`)">Delete</button>
+        {{#if this.isAdmin}}
+        <form action="/admin/users/{{this.id}}?_method=PATCH" method="POST" style="display: inline;">
+          <button type="submit" class="btn btn-link ps-0" onclick="return confirm(`確定要調整{{ this.name }}的權限嗎？`)">變更為使用者
+          </button>
         </form>
+        {{else}}
+        <form action="/admin/users/{{this.id}}?_method=PATCH" method="POST" style="display: inline;">
+          <button type="submit" class="btn btn-link ps-0" onclick="return confirm(`確定要調整{{ this.name }}的權限嗎？`)">變更為管理者
+          </button>
+        </form>
+        {{/if}}
       </td>
     </tr>
     {{/each}}
