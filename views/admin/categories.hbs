@@ -1,7 +1,15 @@
 <h1>類別後台</h1>
-<a href='/admin/categories/create'>
-  <button type="button" class="btn btn-primary">New Category</button>
-</a>
+<form action="/admin/categories" method="POST">
+  <div class="mb-3 d-flex">
+    <div class="col-2 me-2">
+      <input class="form-control" type="text" name="name" id="name" placeholder="Enter New Category" required>
+    </div>
+    <div class="col-1">
+      <button type="submit" class="btn btn-success">Create</button>
+    </div>
+  </div>
+</form>
+
 <br />
 <br />
 <table class="table align-middle">
