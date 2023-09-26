@@ -140,6 +140,17 @@ const adminController = {
         res.redirect('/admin/categories')
       })
       .catch(err => next(err))
+  },
+  getCategory: (req, res, next) => {
+    Promise.all([
+      Category.findByPk(req.params.id, { raw: true }),
+      Category.findAll({ raw: true })
+    ])
+      .then(([category, categories]) => {
+        if (!category) throw new Error("Restaurant didn't exist!")
+        res.render('admin/edit-category', { category, categories })
+      })
+      .catch(err => next(err))
   }
 }
 

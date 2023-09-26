@@ -12,13 +12,13 @@
   </li>
 </ul>
 
-<form action="/admin/categories" method="POST">
+<form action="/admin/categories/{{category.id}}?_method=PUT" method="POST">
   <div class="mb-3 d-flex">
     <div class="col-2 me-2">
       <input class="form-control" type="text" name="name" id="name" placeholder="Enter New Category" required>
     </div>
     <div class="col-1">
-      <button type="submit" class="btn btn-success">Create</button>
+      <button type="submit" class="btn btn-warning">Submit</button>
     </div>
   </div>
 </form>
