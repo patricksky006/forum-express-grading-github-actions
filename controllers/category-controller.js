@@ -10,10 +10,8 @@ const categoryController = {
   },
   postCategory: (req, res, next) => {
     const { name } = req.body
-    if (!name) throw new Error('Restaurant name is required!')
-    return Category.create({
-      name
-    })
+    if (!name) throw new Error('Category name is required!')
+    return Category.create({ name })
       .then(() => {
         req.flash('success_messages', 'Category was successfully created')
         res.redirect('/admin/categories')
@@ -26,21 +24,21 @@ const categoryController = {
       Category.findAll({ raw: true })
     ])
       .then(([category, categories]) => {
-        if (!category) throw new Error("Restaurant didn't exist!")
+        if (!category) throw new Error("Category didn't exist!")
         res.render('admin/categories', { category, categories })
       })
       .catch(err => next(err))
   },
   putCategory: (req, res, next) => {
     const { name } = req.body
-    if (!name) throw new Error('Restaurant name is required!')
+    if (!name) throw new Error('Category name is required!')
     return Category.findByPk(req.params.id)
       .then(category => {
         if (!category) throw new Error("Category didn't exist!")
         return category.update({ name })
       })
       .then(() => {
-        req.flash('success_messages', 'Category was successfully to update')
+        req.flash('success_messages', 'Category was successfully updated')
         res.redirect('/admin/categories')
       })
       .catch(err => next(err))
@@ -51,7 +49,10 @@ const categoryController = {
         if (!Category) throw new Error("Category didn't exist!")
         return Category.destroy()
       })
-      .then(() => res.redirect('/admin/categories'))
+      .then(() => {
+        req.flash('success_messages', 'Category was successfully deleted')
+        res.redirect('/admin/categories')
+      })
       .catch(err => next(err))
   }
 }
