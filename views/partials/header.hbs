@@ -19,6 +19,11 @@
             <a href="/admin" class="nav-link">Admin 後台</a>
           </li>
           {{/if}}
+          {{#if user.isAdmin}}
+          <li class="nav-item">
+            <a href="/admin/categories" class="nav-link">Categories 後台</a>
+          </li>
+          {{/if}}
           <li class="nav-item d-inline-flex align-items-center">
             <span class="text-white nav-link">Hi, {{ user.email }}</span>
           </li>
