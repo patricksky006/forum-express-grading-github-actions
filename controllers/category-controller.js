@@ -27,7 +27,21 @@ const categoryController = {
     ])
       .then(([category, categories]) => {
         if (!category) throw new Error("Restaurant didn't exist!")
-        res.render('admin/edit-category', { category, categories })
+        res.render('admin/categories', { category, categories })
+      })
+      .catch(err => next(err))
+  },
+  putCategory: (req, res, next) => {
+    const { name } = req.body
+    if (!name) throw new Error('Restaurant name is required!')
+    return Category.findByPk(req.params.id)
+      .then(category => {
+        if (!category) throw new Error("Category didn't exist!")
+        return category.update({ name })
+      })
+      .then(() => {
+        req.flash('success_messages', 'Category was successfully to update')
+        res.redirect('/admin/categories')
       })
       .catch(err => next(err))
   }
