@@ -44,7 +44,7 @@ const userController = {
     })
       .then(user => {
         if (!user) throw new Error("User didn't exist.")
-        res.render('users', { user })
+        res.render('users/profile', { user })
       })
       .catch(err => next(err))
   },
@@ -54,7 +54,7 @@ const userController = {
     })
       .then(user => {
         if (!user) throw new Error("User didn't exist.")
-        res.render('edit-user', { user })
+        res.render('users/edit', { user })
       })
       .catch(err => next(err))
   },
@@ -62,20 +62,21 @@ const userController = {
     const { name } = req.body
     if (!name) throw new Error('User name is required!')
     const { file } = req
-    Promise.all([
+    return Promise.all([
       User.findByPk(req.params.id),
       localFileHandler(file) // 把檔案傳到 file-helper 處理
     ])
       .then(([user, filePath]) => {
         if (!user) throw new Error("User didn't exist!")
+
         return user.update({
-          name,
+          name: req.body.name,
           image: filePath || user.image
         })
       })
-      .then(user => {
-        req.flash('success_messages', 'User was successfully to update')
-        res.redirect(`/users/${user.id}`)
+      .then(() => {
+        req.flash('success_messages', '使用者資料編輯成功')
+        res.redirect(`/users/${req.params.id}`)
       })
       .catch(err => next(err))
   }
