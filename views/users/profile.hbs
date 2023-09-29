@@ -7,24 +7,20 @@
     <div class="col-md-8">
       <h1>{{user.name}}</h1>
       <h3>{{user.email}}</h3>
-      <h3> 間已評論餐廳</h3>
+      <h3> {{commentData.length}}已評論餐廳</h3>
       <a href="/users/{{user.id}}/edit" class="btn btn-primary mt-5">edit</a>
     </div>
   </div>
 </div>
 <div>
   <div>
-    <h3>已評論的餐廳</h3>
+    <h3>{{commentData.length}}已評論餐廳</h3>
   </div>
-  <div style="background: white; height: 100px" class="d-flex flex-row bd-highlight mb-3 align-items-center">
-    <a href="">
-      <img src="..." class="img-thumbnail me-3" alt="餐廳1">
+  <div style="background: white; height: auto" class="d-flex flex-row bd-highlight mb-3 align-items-center flex-wrap">
+    {{#each commentData}}
+      <a href="/restaurants/{{this.dataValues.restaurantId}}">
+      <img src="{{this.dataValues.Restaurant.dataValues.image}}" class="img-thumbnail ms-1" style="max-width: 100px; max-height: 100px;" alt="{{this.dataValues.Restaurant.dataValues.name}}">
     </a>
-    <a href="">
-      <img src="..." class="img-thumbnail me-3" alt="餐廳2">
-    </a>
-    <a href="">
-      <img src="..." class="img-thumbnail me-3" alt="餐廳3">
-    </a>
+    {{/each}}
   </div>
 </div>
