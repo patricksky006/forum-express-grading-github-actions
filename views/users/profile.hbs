@@ -1,12 +1,30 @@
-<div class="row">
-  <div class="col-md-4">
-    <img class="img-responsive center-block mb-5"
-      src="{{user.image}}"
-      style="width: 100%; transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
+<div>
+  <div class="row">
+    <div class="col-md-4">
+      <img class="img-responsive center-block mb-5" src="{{user.image}}"
+        style="width: 100%; transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
+    </div>
+    <div class="col-md-8">
+      <h1>{{user.name}}</h1>
+      <h3>{{user.email}}</h3>
+      <h3> 間已評論餐廳</h3>
+      <a href="/users/{{user.id}}/edit" class="btn btn-primary mt-5">edit</a>
+    </div>
   </div>
-  <div class="col-md-8">
-    <h1>{{user.name}}</h1>
-    <h2>{{user.email}}</h2>
-    <a href="/users/{{user.id}}/edit" class="btn btn-primary">edit</a>
+</div>
+<div>
+  <div>
+    <h3>已評論的餐廳</h3>
+  </div>
+  <div style="background: white; height: 100px" class="d-flex flex-row bd-highlight mb-3 align-items-center">
+    <a href="">
+      <img src="..." class="img-thumbnail me-3" alt="餐廳1">
+    </a>
+    <a href="">
+      <img src="..." class="img-thumbnail me-3" alt="餐廳2">
+    </a>
+    <a href="">
+      <img src="..." class="img-thumbnail me-3" alt="餐廳3">
+    </a>
   </div>
 </div>
