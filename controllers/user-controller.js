@@ -35,6 +35,12 @@ const userController = {
     req.flash('success_messages', '登出成功！')
     req.logout()
     res.redirect('/signin')
+  },
+  getUser: (req, res) => {
+    res.render('users')
+  },
+  editUser: (req, res) => {
+    res.render('edit-user')
   }
 }
 module.exports = userController
