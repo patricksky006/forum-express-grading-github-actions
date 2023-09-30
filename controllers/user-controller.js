@@ -65,6 +65,10 @@ const userController = {
       .catch(err => next(err))
   },
   editUser: (req, res, next) => {
+    if (Number(req.params.id) !== Number(req.user.id)) {
+      req.flash('error_messages', '您不是該使用者')
+      res.redirect(`/users/${req.params.id}`)
+    }
     return User.findByPk(req.params.id, {
       raw: true
     })
@@ -75,6 +79,10 @@ const userController = {
       .catch(err => next(err))
   },
   putUser: (req, res, next) => {
+    if (Number(req.params.id) !== Number(req.user.id)) {
+      req.flash('error_messages', '您不是該使用者')
+      res.redirect(`/users/${req.params.id}`)
+    }
     const { name } = req.body
     if (!name) throw new Error('User name is required!')
     const { file } = req

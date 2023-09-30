@@ -17,6 +17,26 @@ npm install
 create database forum;
 ```
 
+### 建立資料表
+
+```
+npx sequelize db:migrate
+```
+
+### 建立種子資料
+```
+npx sequelize db:seed:all
+```
+
+### 建立 upload和temp 資料夾
+
+```
+mkdir upload
+```
+```
+mkdir temp
+```
+
 ### 執行測試
 ```
 npm run test
