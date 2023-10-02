@@ -30,7 +30,9 @@ passport.deserializeUser((id, cb) => {
   return User.findByPk(id, {
     include: [
       { model: Restaurant, as: 'FavoritedRestaurants' },
-      { model: Restaurant, as: 'LikedRestaurants' }
+      { model: Restaurant, as: 'LikedRestaurants' },
+      { model: User, as: 'Followers' }, // 找出所有 followingId 是 5 的人，就是我的 follower
+      { model: User, as: 'Followings' } // 找出所有 followerId 是 5 的人，就是我在 following 的人
     ]
   })
     .then(user => { return cb(null, user.toJSON()) })
