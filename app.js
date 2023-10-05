@@ -8,7 +8,7 @@ const session = require('express-session')
 const passport = require('./config/passport')
 const handlebarsHelpers = require('./helpers/handlebars-helpers')
 const { getUser } = require('./helpers/auth-helpers')
-const routes = require('./routes')
+const { pages } = require('./routes')
 const SESSION_SECRET = 'secret'
 
 const app = express()
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
   res.locals.user = getUser(req)
   next()
 })
-app.use(routes)
+app.use(pages)
 
 app.listen(port, () => {
   console.info(`express server is running on http://localhost:${port}`)
