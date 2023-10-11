@@ -1,4 +1,4 @@
-const { Restaurant, Category } = require('../models')
+const { Restaurant, Category, User } = require('../models')
 const { localFileHandler } = require('../helpers/file-helpers')
 
 const adminServices = {
@@ -85,6 +85,26 @@ const adminServices = {
           description,
           image: filePath || restaurant.image,
           categoryId
+        })
+      })
+      .then(data => cb(null, { data }))
+      .catch(err => cb(err))
+  },
+  getUsers: (req, cb) => {
+    return User.findAll({
+      raw: true
+    })
+      .then(users => cb(null, { users }))
+      .catch(err => cb(err))
+  },
+  patchUser: (req, cb) => {
+    const id = req.params.id
+    return User.findByPk(id)
+      .then(user => {
+        if (!user) throw new Error("User didn't exist!")
+        if (user.email === 'root@example.com') throw new Error('禁止變更此帳號root 權限')
+        return user.update({
+          isAdmin: !user.isAdmin
         })
       })
       .then(data => cb(null, { data }))
