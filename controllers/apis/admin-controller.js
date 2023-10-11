@@ -12,6 +12,9 @@ const adminController = {
   },
   createRestaurant: (req, res, next) => {
     adminServices.createRestaurant(req, (err, data) => err ? next(err) : res.json({ status: 'success', data }))
+  },
+  getRestaurant: (req, res, next) => {
+    adminServices.getRestaurant(req, (err, data) => err ? next(err) : res.json({ status: 'success', data }))
   }
 }
 
