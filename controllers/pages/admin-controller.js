@@ -1,5 +1,4 @@
-const { Restaurant, User } = require('../../models')
-const { localFileHandler } = require('../../helpers/file-helpers')
+const { User } = require('../../models')
 const adminServices = require('../../services/admin-services')
 
 const adminController = {
@@ -23,30 +22,11 @@ const adminController = {
     adminServices.editRestaurant(req, (err, data) => err ? next(err) : res.render('admin/edit-restaurant', data))
   },
   putRestaurant: (req, res, next) => {
-    const { name, tel, address, openingHours, description, categoryId } = req.body
-    if (!name) throw new Error('Restaurant name is required!')
-    const { file } = req
-    Promise.all([
-      Restaurant.findByPk(req.params.id), // 去資料庫查有沒有這間餐廳
-      localFileHandler(file) // 把檔案傳到 file-helper 處理
-    ])
-      .then(([restaurant, filePath]) => { // 以上兩樣事都做完以後
-        if (!restaurant) throw new Error("Restaurant didn't exist!")
-        return restaurant.update({
-          name,
-          tel,
-          address,
-          openingHours,
-          description,
-          image: filePath || restaurant.image,
-          categoryId
-        })
-      })
-      .then(() => {
-        req.flash('success_messages', 'restaurant was successfully to update')
-        res.redirect('/admin/restaurants')
-      })
-      .catch(err => next(err))
+    adminServices.putRestaurant(req, (err, data) => {
+      if (err) return next(err)
+      req.flash('success_messages', 'restaurant was successfully to update')
+      res.redirect('/admin/restaurants', data)
+    })
   },
   deleteRestaurant: (req, res, next) => {
     adminServices.deleteRestaurant(req, (err, data) => {

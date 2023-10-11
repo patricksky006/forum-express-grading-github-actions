@@ -66,6 +66,29 @@ const adminServices = {
         cb(null, { restaurant, categories })
       })
       .catch(err => cb(err))
+  },
+  putRestaurant: (req, cb) => {
+    const { name, tel, address, openingHours, description, categoryId } = req.body
+    if (!name) throw new Error('Restaurant name is required!')
+    const { file } = req
+    Promise.all([
+      Restaurant.findByPk(req.params.id), // 去資料庫查有沒有這間餐廳
+      localFileHandler(file) // 把檔案傳到 file-helper 處理
+    ])
+      .then(([restaurant, filePath]) => { // 以上兩樣事都做完以後
+        if (!restaurant) throw new Error("Restaurant didn't exist!")
+        return restaurant.update({
+          name,
+          tel,
+          address,
+          openingHours,
+          description,
+          image: filePath || restaurant.image,
+          categoryId
+        })
+      })
+      .then(data => cb(null, { data }))
+      .catch(err => cb(err))
   }
 }
 
