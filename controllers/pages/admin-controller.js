@@ -12,7 +12,7 @@ const adminController = {
     adminServices.postRestaurant(req, (err, data) => {
       if (err) return next(err)
       req.flash('success_messages', 'restaurant was successfully created')
-      return res.redirect('/admin/restaurants', data)
+      return res.redirect('/admin/restaurants')
     })
   },
   getRestaurant: (req, res, next) => {
@@ -25,7 +25,7 @@ const adminController = {
     adminServices.putRestaurant(req, (err, data) => {
       if (err) return next(err)
       req.flash('success_messages', 'restaurant was successfully to update')
-      res.redirect('/admin/restaurants', data)
+      res.redirect('/admin/restaurants')
     })
   },
   deleteRestaurant: (req, res, next) => {
@@ -42,7 +42,7 @@ const adminController = {
     adminServices.patchUser(req, (err, data) => {
       if (err) return next(err)
       req.flash('success_messages', '使用者權限變更成功')
-      return res.redirect('/admin/users', data)
+      return res.redirect('/admin/users')
     })
   }
 }
