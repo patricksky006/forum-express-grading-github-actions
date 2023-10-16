@@ -1,4 +1,5 @@
 # 餐廳論壇-實作網站
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/index.png)
 
 ## 介紹
 
@@ -121,3 +122,16 @@ ctrl + c
 * sequelize-cli 6.2.0
 * Bootstrap 5.0.2 CDN
 * popper.js 2.9.2 CDN
+
+
+## 實做畫面
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/Signin.png)
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/Signup.png)
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/index.png)
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/newest%20status.png)
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/Foodexpert.png)
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/Top10Res.png)
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/Restaurantbackstage.png)
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/Userlist.png)
+![image] (https://github.com/patricksky006/forum-express-grading-github-actions/blob/main/PrintScreen/category.png)
+
