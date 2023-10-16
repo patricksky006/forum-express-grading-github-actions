@@ -99,7 +99,7 @@ ctrl + c
 * Git v2.41.0.window.3
 * npm 9.5.0
 * nvm 1.1.11
-* node v18.15.0
+* node v14.16.0
 * nodemon v3.0.1
 * bcryptjs 2.4.3
 * connect-flash 0.1.1
@@ -118,3 +118,5 @@ ctrl + c
 * passport-local 1.0.0
 * sequelize 6.6.5
 * sequelize-cli 6.2.0
+* Bootstrap 5.0.2 CDN
+* popper.js 2.9.2 CDN
