@@ -55,7 +55,7 @@ $ npm install
 create database forum;
 ```
 
-### .env檔環境參數如下  
+### 環境參數.env檔如下  
 JWT_SECRET: 自行設定
 
 ### 建立資料表
