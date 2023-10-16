@@ -49,25 +49,25 @@ $ cd forum-express-grading-github-actions
 ```
 $ npm install
 ```
-### 設定資料庫MySQL
+## 設定資料庫MySQL
 需要與 config/config.json 一致
 ```
 create database forum;
 ```
 
-### 環境參數.env檔如下  
+## 環境參數.env檔如下  
 JWT_SECRET: 自行設定
 
-### 建立資料表
+## 建立資料表
 ```
 npx sequelize db:migrate
 ```
 
-### 建立種子資料
+## 建立種子資料
 ```
 npx sequelize db:seed:all
 ```
-### 建立 upload和temp 資料夾
+## 建立 upload和temp 資料夾
 ```
 mkdir upload
 ```
